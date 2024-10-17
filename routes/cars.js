@@ -1,15 +1,17 @@
 const express = require("express");
 const {
-    validateCreateCars,
+    validateCreateCar,
 } = require("../middlewares/cars");
 const {
     createCar,
-} = require("../repositories/carsRepository");
+} = require("../repositories/cars");
 const router = express.Router();
 
 router.get('/', (req, res) => {
     const cars = require("../data/cars.json");
     res.json({ cars });
 });
+
+router.post("/", validateCreateCar, createCar);
 
 module.exports = router;
